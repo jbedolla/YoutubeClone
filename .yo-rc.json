@@ -1,0 +1,36 @@
+{
+    "generator-jhipster": {
+        "promptValues": {
+            "packageName": "rocks.zipcode.io",
+            "nativeLanguage": "en"
+        },
+        "jhipsterVersion": "5.7.1",
+        "applicationType": "monolith",
+        "baseName": "ZipFlix2",
+        "packageName": "rocks.zipcode.io",
+        "packageFolder": "rocks/zipcode/io",
+        "serverPort": "8080",
+        "authenticationType": "jwt",
+        "cacheProvider": "hazelcast",
+        "enableHibernateCache": true,
+        "websocket": false,
+        "databaseType": "sql",
+        "devDatabaseType": "h2Memory",
+        "prodDatabaseType": "mysql",
+        "searchEngine": false,
+        "messageBroker": false,
+        "serviceDiscoveryType": "eureka",
+        "buildTool": "maven",
+        "enableSwaggerCodegen": false,
+        "jwtSecretKey": "YzI1NmZmZDY0NjZhY2MxYzkzNmI2MjAzNjE3OTE4NzkwZWZiOWQzNmEzMTI0ZmFkZTc3ZDAyNWU2OGUyMjcxMWJlNTEyNTU1NmY1NjM4Yzk5MjA4ZWViY2NiZDNiMmI3YTlhZjEwMGIwNzNjMGVhMWQ0YzEzMmI2NWJkMzhjOWI=",
+        "clientFramework": "angularX",
+        "useSass": true,
+        "clientPackageManager": "npm",
+        "testFrameworks": ["protractor"],
+        "jhiPrefix": "jhi",
+        "otherModules": [],
+        "enableTranslation": true,
+        "nativeLanguage": "en",
+        "languages": ["en", "es"]
+    }
+}
