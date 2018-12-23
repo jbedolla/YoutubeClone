@@ -1,0 +1,24 @@
+{
+    "zipFlix2App": {
+        "searchResult": {
+            "home": {
+                "title": "Search Results",
+                "createLabel": "Create a new Search Result",
+                "createOrEditLabel": "Create or edit a Search Result"
+            },
+            "created": "A new Search Result is created with identifier {{ param }}",
+            "updated": "A Search Result is updated with identifier {{ param }}",
+            "deleted": "A Search Result is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Search Result {{ id }}?"
+            },
+            "detail": {
+                "title": "Search Result"
+            },
+            "videoId": "Video Id",
+            "link": "Link",
+            "thumbnail": "Thumbnail",
+            "category": "Category"
+        }
+    }
+}

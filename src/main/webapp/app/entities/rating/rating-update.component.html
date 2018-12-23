@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-rating-heading" jhiTranslate="zipFlix2App.rating.home.createOrEditLabel">Create or edit a Rating</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!rating.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="rating.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zipFlix2App.rating.videoId" for="field_videoId">Video Id</label>
+                    <input type="text" class="form-control" name="videoId" id="field_videoId"
+                        [(ngModel)]="rating.videoId" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zipFlix2App.rating.viewerId" for="field_viewerId">Viewer Id</label>
+                    <input type="text" class="form-control" name="viewerId" id="field_viewerId"
+                        [(ngModel)]="rating.viewerId" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zipFlix2App.rating.timestamp" for="field_timestamp">Timestamp</label>
+                    <div class="input-group">
+                        <input id="field_timestamp" type="text" class="form-control" name="timestamp" ngbDatepicker  #timestampDp="ngbDatepicker" [(ngModel)]="rating.timestamp"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="timestampDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zipFlix2App.rating.rating" for="field_rating">Rating</label>
+                    <input type="number" class="form-control" name="rating" id="field_rating"
+                        [(ngModel)]="rating.rating" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zipFlix2App.rating.video" for="field_video">Video</label>
+                    <select class="form-control" id="field_video" name="video" [(ngModel)]="rating.video" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="videoOption.id === rating.video?.id ? rating.video : videoOption" *ngFor="let videoOption of videos; trackBy: trackVideoById">{{videoOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zipFlix2App.rating.profile" for="field_profile">Profile</label>
+                    <select class="form-control" id="field_profile" name="profile" [(ngModel)]="rating.profile" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="profileOption.id === rating.profile?.id ? rating.profile : profileOption" *ngFor="let profileOption of profiles; trackBy: trackProfileById">{{profileOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

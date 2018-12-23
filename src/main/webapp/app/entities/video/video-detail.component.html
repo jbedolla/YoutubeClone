@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="video">
+            <h2><span jhiTranslate="zipFlix2App.video.detail.title">Video</span> {{video.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="zipFlix2App.video.title">Title</span></dt>
+                <dd>
+                    <span>{{video.title}}</span>
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.video.description">Description</span></dt>
+                <dd>
+                    <span>{{video.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.video.category">Category</span></dt>
+                <dd>
+                    <span>{{video.category}}</span>
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.video.link">Link</span></dt>
+                <dd>
+                    <span>{{video.link}}</span>
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.video.avgRating">Avg Rating</span></dt>
+                <dd>
+                    <span>{{video.avgRating}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/video', video.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

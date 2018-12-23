@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="videoHistory">
+            <h2><span jhiTranslate="zipFlix2App.videoHistory.detail.title">Video History</span> {{videoHistory.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="zipFlix2App.videoHistory.timestamp">Timestamp</span></dt>
+                <dd>
+                    <span>{{videoHistory.timestamp}}</span>
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.videoHistory.video">Video</span></dt>
+                <dd>
+                    <div *ngIf="videoHistory.video">
+                        <a [routerLink]="['/video', videoHistory.video?.id, 'view']">{{videoHistory.video?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.videoHistory.profile">Profile</span></dt>
+                <dd>
+                    <div *ngIf="videoHistory.profile">
+                        <a [routerLink]="['/profile', videoHistory.profile?.id, 'view']">{{videoHistory.profile?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/video-history', videoHistory.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

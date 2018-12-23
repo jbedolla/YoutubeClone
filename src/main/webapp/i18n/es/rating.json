@@ -1,0 +1,26 @@
+{
+    "zipFlix2App": {
+        "rating": {
+            "home": {
+                "title": "Ratings",
+                "createLabel": "Crear nuevo Rating",
+                "createOrEditLabel": "Crear o editar Rating"
+            },
+            "created": "Un nuevo Rating ha sido creado con el identificador {{ param }}",
+            "updated": "Un Rating ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Rating ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Rating {{ id }}?"
+            },
+            "detail": {
+                "title": "Rating"
+            },
+            "videoId": "Video Id",
+            "viewerId": "Viewer Id",
+            "timestamp": "Timestamp",
+            "rating": "Rating",
+            "video": "Video",
+            "profile": "Profile"
+        }
+    }
+}

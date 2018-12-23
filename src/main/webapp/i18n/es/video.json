@@ -1,0 +1,25 @@
+{
+    "zipFlix2App": {
+        "video": {
+            "home": {
+                "title": "Videos",
+                "createLabel": "Crear nuevo Video",
+                "createOrEditLabel": "Crear o editar Video"
+            },
+            "created": "Un nuevo Video ha sido creado con el identificador {{ param }}",
+            "updated": "Un Video ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Video ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Video {{ id }}?"
+            },
+            "detail": {
+                "title": "Video"
+            },
+            "title": "Title",
+            "description": "Description",
+            "category": "Category",
+            "link": "Link",
+            "avgRating": "Avg Rating"
+        }
+    }
+}

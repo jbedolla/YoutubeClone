@@ -1,0 +1,23 @@
+{
+    "zipFlix2App": {
+        "videoHistory": {
+            "home": {
+                "title": "Video Histories",
+                "createLabel": "Create a new Video History",
+                "createOrEditLabel": "Create or edit a Video History"
+            },
+            "created": "A new Video History is created with identifier {{ param }}",
+            "updated": "A Video History is updated with identifier {{ param }}",
+            "deleted": "A Video History is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Video History {{ id }}?"
+            },
+            "detail": {
+                "title": "Video History"
+            },
+            "timestamp": "Timestamp",
+            "video": "Video",
+            "profile": "Profile"
+        }
+    }
+}

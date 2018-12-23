@@ -1,0 +1,66 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="zipFlix2App.videoHistory.home.title">Video Histories</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-video-history" [routerLink]="['/video-history/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="zipFlix2App.videoHistory.home.createLabel">
+            Create new Video History
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="videoHistories">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="zipFlix2App.videoHistory.timestamp">Timestamp</span></th>
+            <th><span jhiTranslate="zipFlix2App.videoHistory.video">Video</span></th>
+            <th><span jhiTranslate="zipFlix2App.videoHistory.profile">Profile</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let videoHistory of videoHistories ;trackBy: trackId">
+                <td><a [routerLink]="['/video-history', videoHistory.id, 'view' ]">{{videoHistory.id}}</a></td>
+                <td>{{videoHistory.timestamp | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="videoHistory.video">
+                        <a [routerLink]="['../video', videoHistory.video?.id, 'view' ]" >{{videoHistory.video?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="videoHistory.profile">
+                        <a [routerLink]="['../profile', videoHistory.profile?.id, 'view' ]" >{{videoHistory.profile?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/video-history', videoHistory.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/video-history', videoHistory.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'video-history/'+ videoHistory.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

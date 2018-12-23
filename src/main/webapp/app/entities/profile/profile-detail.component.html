@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="profile">
+            <h2><span jhiTranslate="zipFlix2App.profile.detail.title">Profile</span> {{profile.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="zipFlix2App.profile.username">Username</span></dt>
+                <dd>
+                    <span>{{profile.username}}</span>
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.profile.lastLoggedIn">Last Logged In</span></dt>
+                <dd>
+                    <span>{{profile.lastLoggedIn}}</span>
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.profile.imageId">Image Id</span></dt>
+                <dd>
+                    <span>{{profile.imageId}}</span>
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.profile.user">User</span></dt>
+                <dd>
+                    {{profile.user?.id}}
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.profile.friends">Friends</span></dt>
+                <dd>
+                    <span *ngFor="let friends of profile.friends; let last = last">
+                        <a [routerLink]="['/profile', friends?.id, 'view' ]">{{friends.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/profile', profile.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

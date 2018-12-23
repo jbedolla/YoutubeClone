@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="rating">
+            <h2><span jhiTranslate="zipFlix2App.rating.detail.title">Rating</span> {{rating.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="zipFlix2App.rating.videoId">Video Id</span></dt>
+                <dd>
+                    <span>{{rating.videoId}}</span>
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.rating.viewerId">Viewer Id</span></dt>
+                <dd>
+                    <span>{{rating.viewerId}}</span>
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.rating.timestamp">Timestamp</span></dt>
+                <dd>
+                    <span>{{rating.timestamp}}</span>
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.rating.rating">Rating</span></dt>
+                <dd>
+                    <span>{{rating.rating}}</span>
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.rating.video">Video</span></dt>
+                <dd>
+                    <div *ngIf="rating.video">
+                        <a [routerLink]="['/video', rating.video?.id, 'view']">{{rating.video?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.rating.profile">Profile</span></dt>
+                <dd>
+                    <div *ngIf="rating.profile">
+                        <a [routerLink]="['/profile', rating.profile?.id, 'view']">{{rating.profile?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/rating', rating.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

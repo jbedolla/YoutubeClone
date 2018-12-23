@@ -1,0 +1,58 @@
+entity Profile {
+    username String
+    lastLoggedIn LocalDate
+    imageId String
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Video {
+	title String
+	description String
+	category String
+    link String
+    avgRating Double
+}
+
+entity SearchResult {
+    videoId String
+    link String
+    thumbnail String
+    category String
+}
+
+entity VideoHistory {
+    timestamp LocalDate
+    
+}
+entity Rating {
+	videoId String
+    viewerId String
+    timestamp LocalDate
+    rating Long
+}
+
+relationship ManyToMany {
+    Profile{profile} to Profile{friends(username) required}
+}
+
+relationship ManyToOne {
+	Profile{user} to User{profile}
+	Rating{video} to Video
+    Rating{profile} to Profile
+    VideoHistory{video} to Video
+    VideoHistory{profile} to Profile
+}
+
+// Set pagination options
+//paginate JobHistory, Employee with infinite-scroll
+paginate SearchResult with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+//service all with serviceImpl except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

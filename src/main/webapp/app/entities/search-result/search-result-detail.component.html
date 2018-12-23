@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="searchResult">
+            <h2><span jhiTranslate="zipFlix2App.searchResult.detail.title">Search Result</span> {{searchResult.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="zipFlix2App.searchResult.videoId">Video Id</span></dt>
+                <dd>
+                    <span>{{searchResult.videoId}}</span>
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.searchResult.link">Link</span></dt>
+                <dd>
+                    <span>{{searchResult.link}}</span>
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.searchResult.thumbnail">Thumbnail</span></dt>
+                <dd>
+                    <span>{{searchResult.thumbnail}}</span>
+                </dd>
+                <dt><span jhiTranslate="zipFlix2App.searchResult.category">Category</span></dt>
+                <dd>
+                    <span>{{searchResult.category}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/search-result', searchResult.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

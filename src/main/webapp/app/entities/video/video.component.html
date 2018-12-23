@@ -1,0 +1,62 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="zipFlix2App.video.home.title">Videos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-video" [routerLink]="['/video/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="zipFlix2App.video.home.createLabel">
+            Create new Video
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="videos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="zipFlix2App.video.title">Title</span></th>
+            <th><span jhiTranslate="zipFlix2App.video.description">Description</span></th>
+            <th><span jhiTranslate="zipFlix2App.video.category">Category</span></th>
+            <th><span jhiTranslate="zipFlix2App.video.link">Link</span></th>
+            <th><span jhiTranslate="zipFlix2App.video.avgRating">Avg Rating</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let video of videos ;trackBy: trackId">
+                <td><a [routerLink]="['/video', video.id, 'view' ]">{{video.id}}</a></td>
+                <td>{{video.title}}</td>
+                <td>{{video.description}}</td>
+                <td>{{video.category}}</td>
+                <td>{{video.link}}</td>
+                <td>{{video.avgRating}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/video', video.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/video', video.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'video/'+ video.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
