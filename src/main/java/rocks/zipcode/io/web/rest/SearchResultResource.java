@@ -1,8 +1,11 @@
 package rocks.zipcode.io.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import rocks.zipcode.io.domain.SearchResult;
 import rocks.zipcode.io.repository.SearchResultRepository;
+import rocks.zipcode.io.service.YoutubeService;
 import rocks.zipcode.io.web.rest.errors.BadRequestAlertException;
 import rocks.zipcode.io.web.rest.util.HeaderUtil;
 import rocks.zipcode.io.web.rest.util.PaginationUtil;
@@ -12,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +30,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class SearchResultResource {
+
+    @Autowired
+    YoutubeService youtubeService;
 
     private final Logger log = LoggerFactory.getLogger(SearchResultResource.class);
 
@@ -124,4 +129,12 @@ public class SearchResultResource {
         searchResultRepository.deleteById(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+//    @GetMapping("/search-results")
+//    @Timed
+//    public ResponseEntity<?> searchByCategory() {
+//        log.debug("REST request to get SearchResults for CategoryById");
+//        Iterable<com.google.api.services.youtube.model.SearchResult> searchResult = youtubeService.searchByCategory("10");
+//        return new ResponseEntity<>(searchResult, HttpStatus.OK);
+//    }
 }

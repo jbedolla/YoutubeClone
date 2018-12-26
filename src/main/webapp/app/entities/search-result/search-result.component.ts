@@ -77,6 +77,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
             }
         });
         this.loadAll();
+        //this.getMusic();
     }
 
     clear() {
@@ -93,6 +94,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loadAll();
+        //this.getMusic();
         this.accountService.identity().then(account => {
             this.currentAccount = account;
         });
@@ -128,5 +130,14 @@ export class SearchResultComponent implements OnInit, OnDestroy {
 
     protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    getMusic() {
+        this.searchResultService
+            .getByCategoryId('10')
+            .subscribe(
+                (res: HttpResponse<ISearchResult[]>) => this.paginateSearchResults(res.body, res.headers),
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
     }
 }
