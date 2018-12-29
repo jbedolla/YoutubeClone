@@ -92,14 +92,14 @@ public class SearchResultResource {
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of searchResults in body
      */
-    @GetMapping("/search-results")
-    @Timed
-    public ResponseEntity<List<SearchResult>> getAllSearchResults(Pageable pageable) {
-        log.debug("REST request to get a page of SearchResults");
-        Page<SearchResult> page = searchResultRepository.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/search-results");
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
+//    @GetMapping("/search-results/{searchTerm}")
+//    @Timed
+//    public ResponseEntity<List<SearchResult>> getAllSearchResults(Pageable pageable) {
+//        log.debug("REST request to get a page of SearchResults");
+//        Page<SearchResult> page = searchResultRepository.findAll(pageable);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/search-results");
+//        return ResponseEntity.ok().headers(headers).body(page.getContent());
+//    }
 
     /**
      * GET  /search-results/:id : get the "id" searchResult.
@@ -107,13 +107,13 @@ public class SearchResultResource {
      * @param id the id of the searchResult to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the searchResult, or with status 404 (Not Found)
      */
-    @GetMapping("/search-results/{id}")
-    @Timed
-    public ResponseEntity<SearchResult> getSearchResult(@PathVariable Long id) {
-        log.debug("REST request to get SearchResult : {}", id);
-        Optional<SearchResult> searchResult = searchResultRepository.findById(id);
-        return ResponseUtil.wrapOrNotFound(searchResult);
-    }
+//    @GetMapping("/search-results/{id}")
+//    @Timed
+//    public ResponseEntity<SearchResult> getSearchResult(@PathVariable Long id) {
+//        log.debug("REST request to get SearchResult : {}", id);
+//        Optional<SearchResult> searchResult = searchResultRepository.findById(id);
+//        return ResponseUtil.wrapOrNotFound(searchResult);
+//    }
 
     /**
      * DELETE  /search-results/:id : delete the "id" searchResult.
@@ -130,11 +130,27 @@ public class SearchResultResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-//    @GetMapping("/search-results")
-//    @Timed
-//    public ResponseEntity<?> searchByCategory() {
-//        log.debug("REST request to get SearchResults for CategoryById");
-//        Iterable<com.google.api.services.youtube.model.SearchResult> searchResult = youtubeService.searchByCategory("10");
-//        return new ResponseEntity<>(searchResult, HttpStatus.OK);
-//    }
+    @GetMapping("/browse/{categoryId}")
+    @Timed
+    public ResponseEntity<?> searchByCategory(@PathVariable String categoryId) {
+        log.debug("REST request to get Browse by categoryId");
+        Iterable<SearchResult> searchResult = youtubeService.searchByCategory(categoryId);
+        return new ResponseEntity<>(searchResult, HttpStatus.OK);
+    }
+
+    @GetMapping("/topTrending")
+    @Timed
+    public ResponseEntity<?> topTrending() {
+        log.debug("REST request to get topTrending");
+        Iterable<SearchResult> searchResult = youtubeService.searchTopTrending();
+        return new ResponseEntity<>(searchResult, HttpStatus.OK);
+    }
+
+    @GetMapping("/search-results/{searchTerm}")
+    @Timed
+    public ResponseEntity<?> search(@PathVariable String searchTerm) {
+        log.debug("REST request to get SearchResults by searchTerm");
+        Iterable<SearchResult> searchResult = youtubeService.search(searchTerm);
+        return new ResponseEntity<>(searchResult, HttpStatus.OK);
+    }
 }
