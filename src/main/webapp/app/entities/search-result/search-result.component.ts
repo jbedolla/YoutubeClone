@@ -50,13 +50,9 @@ export class SearchResultComponent implements OnInit, OnDestroy {
 
     loadAll() {
         this.searchResultService
-            .query({
-                page: this.page - 1,
-                size: this.itemsPerPage,
-                sort: this.sort()
-            })
+            .search('cats')
             .subscribe(
-                (res: HttpResponse<ISearchResult[]>) => this.paginateSearchResults(res.body, res.headers),
+                (res: HttpResponse<ISearchResult[]>) => this.addResults(res.body),
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
     }
@@ -120,13 +116,30 @@ export class SearchResultComponent implements OnInit, OnDestroy {
     }
 
     protected paginateSearchResults(data: ISearchResult[], headers: HttpHeaders) {
-        this.links = this.parseLinks.parse(headers.get('link'));
-        this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-        this.queryCount = this.totalItems;
+        console.log('data in the house: ' + data);
+        // this.links = this.parseLinks.parse(headers.get('link'));
+        // this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+        // this.queryCount = this.totalItems;
         this.searchResults = data;
+        console.log(this.searchResults);
     }
 
     protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    getMusic() {
+        this.searchResultService
+            .getByCategoryId('10')
+            .subscribe(
+                (res: HttpResponse<ISearchResult[]>) => this.paginateSearchResults(res.body, res.headers),
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
+    }
+
+    addResults(data: ISearchResult[]) {
+        console.log('Data :' + data);
+        this.searchResults = data;
+        console.log('Search Results : ' + this.searchResults);
     }
 }
