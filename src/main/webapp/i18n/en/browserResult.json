@@ -1,0 +1,24 @@
+{
+    "zipFlix2App": {
+        "browserResult": {
+            "home": {
+                "title": "Browser Results",
+                "createLabel": "Create a new Browser Result",
+                "createOrEditLabel": "Create or edit a Browser Result"
+            },
+            "created": "A new Browser Result is created with identifier {{ param }}",
+            "updated": "A Browser Result is updated with identifier {{ param }}",
+            "deleted": "A Browser Result is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Browser Result {{ id }}?"
+            },
+            "detail": {
+                "title": "Browser Result"
+            },
+            "videoId": "Video Id",
+            "link": "Link",
+            "thumbnail": "Thumbnail",
+            "category": "Category"
+        }
+    }
+}
