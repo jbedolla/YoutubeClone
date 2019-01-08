@@ -3,7 +3,7 @@
         Who is watching?!
     </h1>
 </div>
-<!--div [ngSwitch]="isAuthenticated()"-->
+<div [ngSwitch]="isAuthenticated()">
     <div class="alert alert-success" *ngSwitchCase="true">
 <div class = "row" >
     <div class="column">
@@ -27,4 +27,5 @@
     </div>
 </div>
     </div>
+</div>
     <router-outlet></router-outlet>
