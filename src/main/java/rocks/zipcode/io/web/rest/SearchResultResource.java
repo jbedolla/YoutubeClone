@@ -1,8 +1,11 @@
 package rocks.zipcode.io.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import rocks.zipcode.io.domain.SearchResult;
 import rocks.zipcode.io.repository.SearchResultRepository;
+import rocks.zipcode.io.service.YoutubeService;
 import rocks.zipcode.io.web.rest.errors.BadRequestAlertException;
 import rocks.zipcode.io.web.rest.util.HeaderUtil;
 import rocks.zipcode.io.web.rest.util.PaginationUtil;
@@ -12,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +30,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class SearchResultResource {
+
+    @Autowired
+    YoutubeService youtubeService;
 
     private final Logger log = LoggerFactory.getLogger(SearchResultResource.class);
 
@@ -87,14 +92,14 @@ public class SearchResultResource {
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of searchResults in body
      */
-    @GetMapping("/search-results")
-    @Timed
-    public ResponseEntity<List<SearchResult>> getAllSearchResults(Pageable pageable) {
-        log.debug("REST request to get a page of SearchResults");
-        Page<SearchResult> page = searchResultRepository.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/search-results");
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
+//    @GetMapping("/search-results/{searchTerm}")
+//    @Timed
+//    public ResponseEntity<List<SearchResult>> getAllSearchResults(Pageable pageable) {
+//        log.debug("REST request to get a page of SearchResults");
+//        Page<SearchResult> page = searchResultRepository.findAll(pageable);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/search-results");
+//        return ResponseEntity.ok().headers(headers).body(page.getContent());
+//    }
 
     /**
      * GET  /search-results/:id : get the "id" searchResult.
@@ -102,13 +107,13 @@ public class SearchResultResource {
      * @param id the id of the searchResult to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the searchResult, or with status 404 (Not Found)
      */
-    @GetMapping("/search-results/{id}")
-    @Timed
-    public ResponseEntity<SearchResult> getSearchResult(@PathVariable Long id) {
-        log.debug("REST request to get SearchResult : {}", id);
-        Optional<SearchResult> searchResult = searchResultRepository.findById(id);
-        return ResponseUtil.wrapOrNotFound(searchResult);
-    }
+//    @GetMapping("/search-results/{id}")
+//    @Timed
+//    public ResponseEntity<SearchResult> getSearchResult(@PathVariable Long id) {
+//        log.debug("REST request to get SearchResult : {}", id);
+//        Optional<SearchResult> searchResult = searchResultRepository.findById(id);
+//        return ResponseUtil.wrapOrNotFound(searchResult);
+//    }
 
     /**
      * DELETE  /search-results/:id : delete the "id" searchResult.
@@ -123,5 +128,29 @@ public class SearchResultResource {
 
         searchResultRepository.deleteById(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping("/browse/{categoryId}")
+    @Timed
+    public ResponseEntity<?> searchByCategory(@PathVariable String categoryId) {
+        log.debug("REST request to get Browse by categoryId");
+        Iterable<SearchResult> searchResult = youtubeService.searchByCategory(categoryId);
+        return new ResponseEntity<>(searchResult, HttpStatus.OK);
+    }
+
+    @GetMapping("/topTrending")
+    @Timed
+    public ResponseEntity<?> topTrending() {
+        log.debug("REST request to get topTrending");
+        Iterable<SearchResult> searchResult = youtubeService.searchTopTrending();
+        return new ResponseEntity<>(searchResult, HttpStatus.OK);
+    }
+
+    @GetMapping("/search-results/{searchTerm}")
+    @Timed
+    public ResponseEntity<?> search(@PathVariable String searchTerm) {
+        log.debug("REST request to get SearchResults by searchTerm");
+        Iterable<SearchResult> searchResult = youtubeService.search(searchTerm);
+        return new ResponseEntity<>(searchResult, HttpStatus.OK);
     }
 }

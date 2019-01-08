@@ -3,7 +3,7 @@
         <span class="hipster img-fluid rounded"></span>
     </div>
     <div class="col-md-9">
-        <h1 class="display-4" jhiTranslate="home.title">Welcome, Java Hipster!</h1>
+        <h1 class="display-4" jhiTranslate="home.title">Welcome, Java!</h1>
         <p class="lead" jhiTranslate="home.subtitle">This is your homepage</p>
 
         <div [ngSwitch]="isAuthenticated()">
@@ -29,6 +29,20 @@
                         <option value ="18">Short Movies</option>
                     </select>
                 </div>
+                <!--<div>-->
+                    <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/r-yxNNO1EI8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+                <!--</div>-->
+            </div>
+            <div *ngSwitchCase="true">
+                <div class="table-responsive" *ngIf="topTrendingResults">
+                    <span *ngFor="let searchResult of topTrendingResults ;trackBy: trackId">
+                        <span>
+                            <div>{{searchResult.thumbnail}}</div>
+                            <iframe width="280" height="158" src='https://www.youtube.com/embed/${searchResult.videoId}' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <!-- <span>{{searchResult.videoId}}</span> -->
+                        </span>
+                        <div class="text-right"> </div>
+                    </span>
             </div>
                 <!-- the end of the dropdown browse box-->
 
