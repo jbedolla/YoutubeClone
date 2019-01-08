@@ -3,13 +3,40 @@
         <span class="hipster img-fluid rounded"></span>
     </div>
     <div class="col-md-9">
-        <h1 class="display-4">Welcome to ZipFlix</h1>
-        <p class="lead">This is your homepage</p>
-
+       <!-- <h1 class="display-4" jhiTranslate="home.title">WELCOME TO ZIPFLIX2</h1> -->
+        <h1>ZIP FLIX2!!</h1>
+        <p class="lead" jhiTranslate="home.subtitle">Home</p>
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
                 <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
                     translateValues="{username: '{{account.login}}'}"> You are logged in as user "{{account.login}}". </span>
+                <div>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/r-yxNNO1EI8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <!-- this is the dropdown browse box -->
+                <div class="form-group">
+                    <label class ="Browser">
+                        Browser
+                    </label>
+                    <select id="browser" name ="browser"
+                                [(ngModel)]="browser" class="form-control">
+                        <option value ="1">Film & Animation</option>
+                        <option value ="2">Autos & Vehicles</option>
+                        <option value ="10">Music</option>
+                        <option value ="15">Pets & Animals</option>
+                        <option value ="17">Sports</option>
+                        <option value ="18">Short Movies</option>
+                    </select>
+        <span>
+            <li>
+                <p>
+                    <input class = "glyphicon-search" [(ngModel)]="searchQuery" placeholder="Search Video" >
+                    <button (click)="search(searchTerm)" type="button">find</button>
+                </p>
+            </li>
+        </span>
+                </div>
                 <!--<div>-->
                     <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/r-yxNNO1EI8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
                 <!--</div>-->
@@ -27,6 +54,10 @@
                     </span>
                 </div>
             </div>
+                <!-- the end of the dropdown browse box-->
+
+
+
 
             <div class="alert alert-warning" *ngSwitchCase="false">
                 <span jhiTranslate="global.messages.info.authenticated.prefix">If you want to </span>
@@ -36,8 +67,6 @@
                 <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>&nbsp;
                 <a class="alert-link" routerLink="register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
             </div>
-        </div>
-
         <p jhiTranslate="home.question">
             If you have any question on JHipster:
         </p>
@@ -54,4 +83,5 @@
             <span jhiTranslate="home.like">If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener" jhiTranslate="home.github">GitHub</a>!
         </p>
     </div>
+</div>
 </div>
