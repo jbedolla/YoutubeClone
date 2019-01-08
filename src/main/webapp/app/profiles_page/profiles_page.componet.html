@@ -1,0 +1,31 @@
+<div style="text-align:center">
+    <h1>
+        Who is watching?!
+    </h1>
+</div>
+<div [ngSwitch]="isAuthenticated()">
+    <div class="alert alert-success" *ngSwitchCase="true">
+<div class = "row" >
+    <div class="column">
+        <img width="200" alt="CatPicture" src="assets/img/download.png">
+    </div>
+
+    <div class="column">
+        <img width="200" alt="CatPicture" src="assets/img/download.png">
+    </div>
+
+    <div class="column">
+        <img width="200" alt="CatPicture" src="assets/img/download.png">
+    </div>
+
+    <div class="column">
+        <img width="200" alt="CatPicture" src="assets/img/download.png">
+    </div>
+
+    <div class="column">
+        <img width="200" alt="CatPicture" src="assets/img/download.png">
+    </div>
+</div>
+    </div>
+</div>
+    <router-outlet></router-outlet>
