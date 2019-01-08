@@ -176,6 +176,7 @@ public class YoutubeService {
         sr.setId(2L);
         sr.setVideoId(googleResult.getId().getVideoId());
         sr.setThumbnail(googleResult.getSnippet().getTitle());
+        sr.setLink("https://www.youtube.com/embed/" + googleResult.getId().getVideoId()+"");
         return sr;
     }
 }

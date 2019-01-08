@@ -113,6 +113,11 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- hotswapping (hopefully) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
         <!-- google stuff -->
         <dependency>
             <groupId>com.google.api-client</groupId>

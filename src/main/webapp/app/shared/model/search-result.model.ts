@@ -7,7 +7,13 @@ export interface ISearchResult {
 }
 
 export class SearchResult implements ISearchResult {
-    constructor(public id?: number, public videoId?: string, public link?: string, public thumbnail?: string, public category?: string) {}
+    constructor(public id?: number, public videoId?: string, public link?: string, public thumbnail?: string, public category?: string) {
+        this.link = this.getIframeSrc(videoId);
+    }
+
+    private getIframeSrc = function(src: string) {
+        return 'https://www.youtube.com/embed/' + src;
+    };
 }
 
 // export interface ISearchResult {

@@ -20,6 +20,7 @@ import { ZipFlix2EntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
+// import { SearchResultVideoComponent } from './search-result-video/search-result-video.component';
 
 @NgModule({
     imports: [

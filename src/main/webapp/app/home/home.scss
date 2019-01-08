@@ -9,7 +9,14 @@ Main page styles
     background: url('../../content/images/jhipster_family_member_0.svg') no-repeat center top;
     background-size: contain;
 }
-
+[class*='col-'] {
+    float: left;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+[class*='col-']:last-of-type {
+    padding-right: 0;
+}
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
     only screen and (-moz-min-device-pixel-ratio: 2),

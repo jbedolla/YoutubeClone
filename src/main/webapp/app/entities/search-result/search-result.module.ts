@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ZipFlix2SharedModule } from 'app/shared';
+
 import {
     SearchResultComponent,
     SearchResultDetailComponent,
