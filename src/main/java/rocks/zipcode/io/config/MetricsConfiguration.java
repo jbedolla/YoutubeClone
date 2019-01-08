@@ -11,7 +11,7 @@ import com.codahale.metrics.jvm.*;
 import com.ryantenney.metrics.spring.config.annotation.EnableMetrics;
 import com.ryantenney.metrics.spring.config.annotation.MetricsConfigurerAdapter;
 import com.zaxxer.hikari.HikariDataSource;
-import io.prometheus.client.CollectorRegistry;
+//import io.prometheus.client.CollectorRegistry;
 import io.prometheus.client.dropwizard.DropwizardExports;
 import io.prometheus.client.exporter.MetricsServlet;
 import org.slf4j.Logger;
@@ -110,10 +110,10 @@ public class MetricsConfiguration extends MetricsConfigurerAdapter implements Se
 
             log.debug("Initializing prometheus metrics exporting via {}", endpoint);
 
-            CollectorRegistry.defaultRegistry.register(new DropwizardExports(metricRegistry));
-            servletContext
-                .addServlet("prometheusMetrics", new MetricsServlet(CollectorRegistry.defaultRegistry))
-                .addMapping(endpoint);
+//            CollectorRegistry.defaultRegistry.register(new DropwizardExports(metricRegistry));
+//            servletContext
+//                .addServlet("prometheusMetrics", new MetricsServlet(CollectorRegistry.defaultRegistry))
+//                .addMapping(endpoint);
         }
     }
 }
