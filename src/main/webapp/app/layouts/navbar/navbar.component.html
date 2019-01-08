@@ -17,9 +17,6 @@
                         <span jhiTranslate="global.menu.home">Home</span>
                     </span>
                 </a>
-                <p>
-                    <input class = "glyphicon-search" [(ngModel)]="searchQuery" placeholder="Search Video" >
-                </p>
             </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
@@ -44,6 +41,7 @@
                             <span jhiTranslate="global.menu.entities.video">Video</span>
                         </a>
                     </li>
+
 
 
 

@@ -12,6 +12,16 @@
             <div class="alert alert-success" *ngSwitchCase="true">
                 <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
                     translateValues="{username: '{{account.login}}'}"> You are logged in as user "{{account.login}}". </span>
+                <div>
+        <span>
+            <li>
+                <p>
+                    <input class = "glyphicon-search" [(ngModel)]="searchQuery" placeholder="Search Video" >
+                    <button (click)="search(searchTerm)" type="button">find</button>
+                </p>
+            </li>
+        </span>
+                </div>
                 <!--<div>-->
                     <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/r-yxNNO1EI8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
                 <!--</div>-->
