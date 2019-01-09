@@ -68,12 +68,9 @@ export class HomeComponent implements OnInit {
 
     private sanitize(results: ISearchResult[]): ISearchResult[] {
         for (let i = 0; i < results.length; i++) {
-            const url = results[i].link;
-            results[i].url = this.sanitizer.bypassSecurityTrustResourceUrl(url);
-            console.log('result here : ' + results[i].toString());
-            console.log('url here : ' + results[i].url.toString());
+            const path = results[i].link;
+            results[i].url = this.sanitizer.bypassSecurityTrustResourceUrl(path);
         }
-        console.log('sanitizing' + results);
         return results;
     }
 }
