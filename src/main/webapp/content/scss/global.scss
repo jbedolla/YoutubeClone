@@ -222,5 +222,15 @@ ui bootstrap tweaks
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
+/* ==========================================================================
+global grid (horizontal)
+========================================================================== */
+[class*='col-'] {
+    float: left;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+[class*='col-']:last-of-type {
+    padding-right: 0;
+}
 /* jhipster-needle-scss-add-main JHipster will add new css style */
