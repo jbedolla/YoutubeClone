@@ -1,0 +1,23 @@
+{
+    "zipFlix2App": {
+        "browse": {
+            "home": {
+                "title": "Browses",
+                "createLabel": "Crear nuevo Browse",
+                "createOrEditLabel": "Crear o editar Browse"
+            },
+            "created": "Un nuevo Browse ha sido creado con el identificador {{ param }}",
+            "updated": "Un Browse ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Browse ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Browse {{ id }}?"
+            },
+            "detail": {
+                "title": "Browse"
+            },
+            "videoId": "Video Id",
+            "thumbnail": "Thumbnail",
+            "category": "Category"
+        }
+    }
+}

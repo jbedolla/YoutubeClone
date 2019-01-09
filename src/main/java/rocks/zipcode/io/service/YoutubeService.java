@@ -80,33 +80,6 @@ public class YoutubeService {
             search.setChannelId("UCtg5C-d_3rPUgMaxr285mQQ");
             search.setMaxResults(5L);
 
-//            HashMap<String, String> parameters = new HashMap<>();
-//            parameters.put("part", "snippet");
-//            parameters.put("maxResults", "25");
-//            parameters.put("q", "");
-//            parameters.put("type", "video");
-//            parameters.put("channelId","UCtg5C-d_3rPUgMaxr285mQQ");
-//
-//            YouTube.Search.List searchListByKeywordRequest = getYoutube().search().list(parameters.get("part"));
-//            if (parameters.containsKey("maxResults")) {
-//                searchListByKeywordRequest.setMaxResults(Long.parseLong(parameters.get("maxResults")));
-//            }
-//
-//            if (parameters.containsKey("q") && parameters.get("q") != "") {
-//                searchListByKeywordRequest.setQ(parameters.get("q"));
-//            }
-//
-//            if (parameters.containsKey("type") && parameters.get("type") != "") {
-//                searchListByKeywordRequest.setType(parameters.get("type"));
-//            }
-//
-//            if (parameters.containsKey("channelId") && parameters.get("channelId") != "") {
-//                searchListByKeywordRequest.setChannelId(parameters.get("channelId"));
-//            }
-
-//            searchListByKeywordRequest.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)");
-//            searchListByKeywordRequest.setKey("AIzaSyAsphzlvbh80BzAsVLa_iwyo5OqP73XxF0");
-
             SearchListResponse response = search.execute();
             List<SearchResult> responseList = response.getItems();
 

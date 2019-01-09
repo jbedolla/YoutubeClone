@@ -72,6 +72,56 @@
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>
+            <!-- browse dropdown begins -->
+            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="browse-menu">
+                        <span>
+                            <fa-icon icon="th-list"></fa-icon>
+                            <span>
+                                Browse By Category
+                            </span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu" ngbDropdownMenu>
+                        <li>
+                            <a class="dropdown-item" routerLink="browse/1" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Film & Animation</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="browse/2" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Autos & Vehicles</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="browse/10" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Music</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="browse/15" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Pets & Animals</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="browse/17" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Sports</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="browse/18" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Short Movies</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            <!-- browse dropdown ends -->
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>

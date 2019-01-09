@@ -1,0 +1,23 @@
+{
+    "zipFlix2App": {
+        "browse": {
+            "home": {
+                "title": "Browses",
+                "createLabel": "Create a new Browse",
+                "createOrEditLabel": "Create or edit a Browse"
+            },
+            "created": "A new Browse is created with identifier {{ param }}",
+            "updated": "A Browse is updated with identifier {{ param }}",
+            "deleted": "A Browse is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Browse {{ id }}?"
+            },
+            "detail": {
+                "title": "Browse"
+            },
+            "videoId": "Video Id",
+            "thumbnail": "Thumbnail",
+            "category": "Category"
+        }
+    }
+}

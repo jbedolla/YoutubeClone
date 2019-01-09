@@ -51,7 +51,8 @@
                         <span>
                             <div>{{searchResult.thumbnail}}</div>
                             <div>{{searchResult.videoId}}</div>
-                            <iframe width="280" height="158" src="https://www.youtube.com/embed/'{{videoId}}'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <div><a href="https://www.youtube.com/embed/{{searchResult.videoId}}">here is the uri interpolated</a></div>
+                            <iframe width="280" height="158" [srcdoc]="searchResult.link" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
                             <!-- <span>{{searchResult.videoId}}</span> -->
                         </span>
                         <div class="text-right"> </div>
