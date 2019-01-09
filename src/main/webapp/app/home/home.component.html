@@ -23,14 +23,14 @@
                         Browser
                     </label>
                     <select id="browser" name="browser" class="form-control">
-                        <option value ="1" >Film & Animation </option>
+                        <option value ="1" routerLink="browse/1" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Film & Animation </option>
                         <option value ="2" >Autos & Vehicles</option>
                         <option value= "10">Music</option>
                         <option value ="15">Pets & Animals</option>
                         <option value ="17">Sports</option>
                         <option value ="18">Short Movies</option>
                     </select>
-                    <button (click)="getByCategoryId(value)" type="button" routerLink="browser-result/{{value}}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">browse!</button>
+                    <button type="button" routerLink="browse/{{value}}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">browse!</button>
                     <!-- the end of the dropdown browse box-->
         <span>
             <li>
