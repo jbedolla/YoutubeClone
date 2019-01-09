@@ -1,9 +1,12 @@
+import { SafeUrl } from '@angular/platform-browser';
+
 export interface ISearchResult {
     id?: number;
     videoId?: string;
     link?: string;
     thumbnail?: string;
     category?: string;
+    url?: SafeUrl;
 }
 
 export class SearchResult implements ISearchResult {

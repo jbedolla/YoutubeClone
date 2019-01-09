@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 import { LoginModalService, AccountService, Account } from 'app/core';
 import { SearchResultService } from 'app/entities/search-result';
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
     topTrendingResults: ISearchResult[];
 
     constructor(
+        private sanitizer: DomSanitizer,
         private searchResultService: SearchResultService,
         private accountService: AccountService,
         private jhiAlertService: JhiAlertService,
@@ -27,10 +29,6 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         this.getTopTrending();
-        // this.accountService.identity().then(account => {
-        //     this.account = account;
-        // });
-        // this.registerAuthenticationSuccess();
     }
 
     // registerAuthenticationSuccess() {
@@ -64,7 +62,18 @@ export class HomeComponent implements OnInit {
 
     private addResults(data: ISearchResult[]) {
         console.log('Houston we have data : ' + data);
-        this.topTrendingResults = data;
+        this.topTrendingResults = this.sanitize(data);
         console.log('*** top trending ***' + this.topTrendingResults);
+    }
+
+    private sanitize(results: ISearchResult[]): ISearchResult[] {
+        for (let i = 0; i < results.length; i++) {
+            const url = results[i].link;
+            results[i].url = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+            console.log('result here : ' + results[i].toString());
+            console.log('url here : ' + results[i].url.toString());
+        }
+        console.log('sanitizing' + results);
+        return results;
     }
 }
