@@ -22,20 +22,21 @@
                     <label class ="Browser">
                         Browser
                     </label>
-                    <select id="browser" name ="browser"
-                                [(ngModel)]="browser" class="form-control">
-                        <option value ="1">Film & Animation</option>
-                        <option value ="2">Autos & Vehicles</option>
-                        <option value ="10">Music</option>
+                    <select id="browser" name="browser" class="form-control">
+                        <option value ="1" >Film & Animation </option>
+                        <option value ="2" >Autos & Vehicles</option>
+                        <option value= "10">Music</option>
                         <option value ="15">Pets & Animals</option>
                         <option value ="17">Sports</option>
                         <option value ="18">Short Movies</option>
                     </select>
+                    <button (click)="getByCategoryId(value)" type="button" routerLink="browser-result/{{value}}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">browse!</button>
+                    <!-- the end of the dropdown browse box-->
         <span>
             <li>
                 <p>
-                    <input class = "glyphicon-search" [(ngModel)]="searchQuery" placeholder="Search Video" >
-                    <button (click)="search(searchTerm)" type="button">find</button>
+                    <input type="text" class = "glyphicon-search" [(ngModel)]="searchTerm" placeholder="Search Video" >
+                    <button (click)="search(searchTerm)" type="button" routerLink="search-result/{{searchTerm}}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">find </button>
                 </p>
             </li>
         </span>
@@ -57,7 +58,7 @@
                     </span>
                 </div>
             </div>
-                <!-- the end of the dropdown browse box-->
+
 
 
 

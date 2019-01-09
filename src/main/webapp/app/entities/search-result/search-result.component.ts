@@ -49,8 +49,13 @@ export class SearchResultComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
+        this.search();
+    }
+
+    search(): void {
+        const term = this.activatedRoute.snapshot.paramMap.get('searchTerm');
         this.searchResultService
-            .search('cats')
+            .search(term)
             .subscribe(
                 (res: HttpResponse<ISearchResult[]>) => this.addResults(res.body),
                 (res: HttpErrorResponse) => this.onError(res.message)

@@ -4,11 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
-import { IBrowserResult } from 'app/shared/model/browser-result.model';
+import { ISearchResult } from 'app/shared/model/search-result.model';
 import { AccountService } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
-import { BrowserResultService } from './browser-result.service';
+import { SearchResultService } from '../search-result/search-result.service';
 
 @Component({
     selector: 'jhi-browser-result',
@@ -16,7 +16,7 @@ import { BrowserResultService } from './browser-result.service';
 })
 export class BrowserResultComponent implements OnInit, OnDestroy {
     currentAccount: any;
-    browserResults: IBrowserResult[];
+    searchResults: ISearchResult[];
     error: any;
     success: any;
     eventSubscriber: Subscription;
@@ -31,13 +31,13 @@ export class BrowserResultComponent implements OnInit, OnDestroy {
     reverse: any;
 
     constructor(
-        protected browserResultService: BrowserResultService,
         protected parseLinks: JhiParseLinks,
         protected jhiAlertService: JhiAlertService,
         protected accountService: AccountService,
         protected activatedRoute: ActivatedRoute,
         protected router: Router,
-        protected eventManager: JhiEventManager
+        protected eventManager: JhiEventManager,
+        protected searchResultService: SearchResultService
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe(data => {
@@ -49,14 +49,15 @@ export class BrowserResultComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
-        this.browserResultService
-            .query({
-                page: this.page - 1,
-                size: this.itemsPerPage,
-                sort: this.sort()
-            })
+        this.browse();
+    }
+
+    browse(): void {
+        const id = this.activatedRoute.snapshot.paramMap.get('id');
+        this.searchResultService
+            .getByCategoryId(id)
             .subscribe(
-                (res: HttpResponse<IBrowserResult[]>) => this.paginateBrowserResults(res.body, res.headers),
+                (res: HttpResponse<ISearchResult[]>) => this.addResults(res.body),
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
     }
@@ -103,7 +104,7 @@ export class BrowserResultComponent implements OnInit, OnDestroy {
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId(index: number, item: IBrowserResult) {
+    trackId(index: number, item: ISearchResult) {
         return item.id;
     }
 
@@ -119,14 +120,20 @@ export class BrowserResultComponent implements OnInit, OnDestroy {
         return result;
     }
 
-    protected paginateBrowserResults(data: IBrowserResult[], headers: HttpHeaders) {
+    protected paginateBrowserResults(data: ISearchResult[], headers: HttpHeaders) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
         this.queryCount = this.totalItems;
-        this.browserResults = data;
+        this.searchResults = data;
     }
 
     protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    addResults(data: ISearchResult[]) {
+        console.log('Data :' + data);
+        this.searchResults = data;
+        console.log('Search Results : ' + this.searchResults);
     }
 }

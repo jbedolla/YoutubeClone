@@ -31,7 +31,7 @@ export class SearchResultResolve implements Resolve<ISearchResult> {
 
 export const searchResultRoute: Routes = [
     {
-        path: 'search-result',
+        path: 'search-result/:searchTerm',
         component: SearchResultComponent,
         resolve: {
             pagingParams: JhiResolvePagingParams
