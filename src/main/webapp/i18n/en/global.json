@@ -12,6 +12,7 @@
                 "searchResult": "Search Result",
                 "videoHistory": "Video History",
                 "rating": "Rating",
+                "browse": "Browse",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
