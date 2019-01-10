@@ -7,15 +7,24 @@
         </div>
     <div class="col-md-9">
        <!-- <h1 class="display-4" jhiTranslate="home.title">WELCOME TO ZIPFLIX2</h1> -->
-        <h1>ZIP FLIX2!!</h1>
+        <h1>ZIP FLIX!!</h1>
         <p class="lead" jhiTranslate="home.subtitle">Home</p>
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
+
                 <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
                     translateValues="{username: '{{account.firstName}}'}"> Welcome back"{{account.firstName}}". </span>
                 <div>
+
+
+                <p>
+                    <input type="text" class = "glyphicon-search" [(ngModel)]="searchTerm" placeholder="Search Video" >
+                    <button (click)="search(searchTerm)" type="button" routerLink="search-result/{{searchTerm}}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">find </button>
+                </p>
+                <!-- <div>
+
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/r-yxNNO1EI8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
+                </div> -->
 
                 <!-- &lt;!&ndash; this is the dropdown browse box &ndash;&gt;-->
                 <!-- <div class="form-group">--> 
@@ -35,12 +44,6 @@
                 <!-- &lt;!&ndash; the end of the dropdown browse box&ndash;&gt -->
             </div>
         <span>
-            <li>
-                <p>
-                    <input type="text" class = "glyphicon-search" [(ngModel)]="searchTerm" placeholder="Search Video" >
-                    <button (click)="search(searchTerm)" type="button" routerLink="search-result/{{searchTerm}}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">find </button>
-                </p>
-            </li>
         </span>
                 <!--<div>-->
                     <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/r-yxNNO1EI8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
@@ -69,11 +72,6 @@
                 <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>
                 <a class="alert-link" routerLink="register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
             </div>
-
-
-        <p>
-            <span jhiTranslate="home.like">If you like ZipFlix2, don't forget to give us a star on</span> <a href="https://github.com/demetrm/ZipFlix" target="_blank" rel="noopener" jhiTranslate="home.github">GitHub</a>!
-        </p>
         </div>
     </div>
 </div>
