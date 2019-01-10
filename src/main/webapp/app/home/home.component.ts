@@ -29,15 +29,19 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         this.getTopTrending();
+        this.accountService.identity().then(account => {
+            this.account = account;
+        });
+        this.registerAuthenticationSuccess();
     }
 
-    // registerAuthenticationSuccess() {
-    //     this.eventManager.subscribe('authenticationSuccess', message => {
-    //         this.accountService.identity().then(account => {
-    //             this.account = account;
-    //         });
-    //     });
-    // }
+    registerAuthenticationSuccess() {
+        this.eventManager.subscribe('authenticationSuccess', message => {
+            this.accountService.identity().then(account => {
+                this.account = account;
+            });
+        });
+    }
 
     isAuthenticated() {
         return this.accountService.isAuthenticated();
