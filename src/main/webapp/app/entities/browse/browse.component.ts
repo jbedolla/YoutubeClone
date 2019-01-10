@@ -9,6 +9,7 @@ import { AccountService } from 'app/core';
 import { BrowseService } from './browse.service';
 import { SearchResultService } from '../search-result/search-result.service';
 import { ISearchResult } from 'app/shared/model/search-result.model';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'jhi-browse',
@@ -21,6 +22,7 @@ export class BrowseComponent implements OnInit, OnDestroy {
     eventSubscriber: Subscription;
 
     constructor(
+        protected sanitizer: DomSanitizer,
         protected searchResultService: SearchResultService,
         protected browseService: BrowseService,
         protected jhiAlertService: JhiAlertService,
@@ -70,7 +72,15 @@ export class BrowseComponent implements OnInit, OnDestroy {
     addResults(data: ISearchResult[]) {
         // const el = angular.element(document.querySelector('#value'));
         // this.browseResults(result => result.category = )
-        this.browseResults = data;
+        this.browseResults = this.sanitize(data);
         console.log('Browsing By Category : ' + this.browseResults);
+    }
+
+    private sanitize(results: ISearchResult[]): ISearchResult[] {
+        for (let i = 0; i < results.length; i++) {
+            const path = results[i].link;
+            results[i].url = this.sanitizer.bypassSecurityTrustResourceUrl(path);
+        }
+        return results;
     }
 }

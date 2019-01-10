@@ -4,48 +4,17 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="table-responsive" *ngIf="browseResults">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-            <th><span >Video Id</span></th>
-            <th><span >Title</span></th>
-            <th><span >Category</span></th>
-            <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let browse of browseResults ;trackBy: trackId">
-                <td>{{browse.videoId}}</td>
-                <td>{{browse.thumbnail}}</td>
-                <td>{{browse.category}}</td>
-                <!-- <td>{{browse.category}}</td> -->
-                <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['/browse', browse.id, 'view' ]"
-                                class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
-                        <!-- <button type="submit"
-                                [routerLink]="['/browse', browse.id, 'edit']"
-                                class="btn btn-primary btn-sm">
-                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'browse/'+ browse.id + '/delete'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
-                            <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                        </button> -->
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+    
+        <!-- this is the start of the grid for Browser results-->
+    <div class="grid grid-pad" *ngIf="browseResults">
+        <span *ngFor="let searchResult of browseResults ;trackBy: trackId" class="col-14">
+            <span>
+                <div>{{searchResult.thumbnail}}</div>
+                <!-- <div><a href="https://www.youtube.com/embed/{{searchResult.videoId}}">here is the uri interpolated</a></div> -->
+                <iframe width="280" height="158" [src]="searchResult.url" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+            </span>
+            <div class="text-right"> </div>
+        </span>
     </div>
+    <!-- this is the end of the grid for Browser results-->
 </div>

@@ -4,7 +4,7 @@ import { LoginModalService, AccountService, Account } from 'src/main/webapp/app/
 import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 @Component({
-    selector: 'jhi-profiles_page',
+    selector: 'jhi-profiles-page',
     templateUrl: './profiles_page.html',
     styleUrls: ['profiles_page.scss']
 })
