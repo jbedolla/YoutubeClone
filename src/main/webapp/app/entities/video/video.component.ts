@@ -6,6 +6,9 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { IVideo } from 'app/shared/model/video.model';
 import { AccountService } from 'app/core';
 import { VideoService } from './video.service';
+import { ActivatedRoute } from '@angular/router';
+import { SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'jhi-video',
@@ -15,8 +18,11 @@ export class VideoComponent implements OnInit, OnDestroy {
     videos: IVideo[];
     currentAccount: any;
     eventSubscriber: Subscription;
+    url: SafeUrl;
 
     constructor(
+        protected sanitizer: DomSanitizer,
+        protected activatedRoute: ActivatedRoute,
         protected videoService: VideoService,
         protected jhiAlertService: JhiAlertService,
         protected eventManager: JhiEventManager,
@@ -24,12 +30,17 @@ export class VideoComponent implements OnInit, OnDestroy {
     ) {}
 
     loadAll() {
-        this.videoService.query().subscribe(
-            (res: HttpResponse<IVideo[]>) => {
-                this.videos = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
+        this.setUrl();
+    }
+
+    extractVidId(): String {
+        return this.activatedRoute.snapshot.paramMap.get('vidId');
+    }
+
+    setUrl() {
+        const vidId = this.extractVidId();
+        const link = 'https://www.youtube.com/embed/' + vidId;
+        this.url = this.sanitizer.bypassSecurityTrustResourceUrl(link);
     }
 
     ngOnInit() {
