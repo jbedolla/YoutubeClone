@@ -51,6 +51,7 @@
                 <!--</div>-->
             <div *ngSwitchCase="true">
                 <div class="grid grid-pad" *ngIf="topTrendingResults">
+                    <h3><strong>Top Trending Results</strong></h3>
                     <span *ngFor="let searchResult of topTrendingResults ;trackBy: trackId" class="col-14">
                         <span>
                             <div id="vid" routerLink="video" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">

@@ -143,7 +143,6 @@ export class SearchResultComponent implements OnInit, OnDestroy {
     }
 
     addResults(data: ISearchResult[]) {
-        console.log('Data :' + data);
         this.searchResults = data;
         console.log('Search Results : ' + this.searchResults);
     }

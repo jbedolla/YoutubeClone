@@ -78,7 +78,7 @@ public class YoutubeService {
         try {
             YouTube.Search.List search = buildSearch();
             search.setChannelId("UCtg5C-d_3rPUgMaxr285mQQ");
-            search.setMaxResults(5L);
+            search.setMaxResults(6L);
 
             SearchListResponse response = search.execute();
             List<SearchResult> responseList = response.getItems();
