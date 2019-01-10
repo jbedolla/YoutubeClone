@@ -54,7 +54,7 @@
                     <h3><strong>Top Trending Results</strong></h3>
                     <span *ngFor="let searchResult of topTrendingResults ;trackBy: trackId" class="col-14">
                         <span>
-                            <div id="vid" routerLink="video" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                            <div id="vid" routerLink="video/{{searchResult.videoId}}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                                 <div>{{searchResult.thumbnail}}</div>
                                 <!-- <div><a href="https://www.youtube.com/embed/{{searchResult.videoId}}">here is the uri interpolated</a></div> -->
                                 <iframe width="280" height="158"  [src]="searchResult.url" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
