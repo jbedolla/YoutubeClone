@@ -3,14 +3,13 @@ import { NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 
 import { NgbDateMomentAdapter } from './util/datepicker-adapter';
 import { ZipFlix2SharedLibsModule, ZipFlix2SharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective } from './';
-import { SafePipe } from '../core/safe-pipe.pipe';
 
 @NgModule({
     imports: [ZipFlix2SharedLibsModule, ZipFlix2SharedCommonModule],
-    declarations: [JhiLoginModalComponent, HasAnyAuthorityDirective, SafePipe],
-    providers: [{ provide: NgbDateAdapter, useClass: NgbDateMomentAdapter }, SafePipe],
+    declarations: [JhiLoginModalComponent, HasAnyAuthorityDirective],
+    providers: [{ provide: NgbDateAdapter, useClass: NgbDateMomentAdapter }],
     entryComponents: [JhiLoginModalComponent],
-    exports: [ZipFlix2SharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective, SafePipe],
+    exports: [ZipFlix2SharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ZipFlix2SharedModule {
