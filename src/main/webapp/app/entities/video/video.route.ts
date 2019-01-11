@@ -30,7 +30,7 @@ export class VideoResolve implements Resolve<IVideo> {
 
 export const videoRoute: Routes = [
     {
-        path: 'video',
+        path: 'video/:vidId',
         component: VideoComponent,
         data: {
             authorities: ['ROLE_USER'],

@@ -101,7 +101,7 @@ public class YoutubeService {
         YouTube.Search.List search = getYoutube().search().list("id,snippet");
         search.setKey(getAPIKey());
         search.setType("video");
-        search.setFields("items(id/videoId,snippet/title)");
+        search.setFields("items(id/videoId,snippet(title,description))");
         search.setMaxResults(NUMBER_OF_VIDEOS_RETURNED);
         return search;
     }
@@ -149,6 +149,7 @@ public class YoutubeService {
         sr.setId(2L);
         sr.setVideoId(googleResult.getId().getVideoId());
         sr.setThumbnail(googleResult.getSnippet().getTitle());
+        sr.setCategory(googleResult.getSnippet().getDescription());
         sr.setLink("https://www.youtube.com/embed/" + googleResult.getId().getVideoId()+"");
         return sr;
     }
