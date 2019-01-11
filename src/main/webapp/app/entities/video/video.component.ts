@@ -19,6 +19,7 @@ export class VideoComponent implements OnInit, OnDestroy {
     currentAccount: any;
     eventSubscriber: Subscription;
     url: SafeUrl;
+    description: String;
 
     constructor(
         protected sanitizer: DomSanitizer,
