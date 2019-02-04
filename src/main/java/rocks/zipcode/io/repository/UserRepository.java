@@ -1,7 +1,5 @@
 package rocks.zipcode.io.repository;
-
 import rocks.zipcode.io.domain.User;
-
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
