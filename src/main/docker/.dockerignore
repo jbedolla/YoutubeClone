@@ -11,4 +11,4 @@ test-classes/
 test-results/
 www/
 !*.jar
-!*.war
+!*.war 
