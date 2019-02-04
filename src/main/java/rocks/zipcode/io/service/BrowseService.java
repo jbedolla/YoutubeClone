@@ -4,10 +4,8 @@ import rocks.zipcode.io.domain.Browse;
 import rocks.zipcode.io.repository.BrowseRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +34,6 @@ public class BrowseService {
         log.debug("Request to save Browse : {}", browse);
         return browseRepository.save(browse);
     }
-
     /**
      * Get all the browses.
      *
@@ -60,7 +57,6 @@ public class BrowseService {
         log.debug("Request to get Browse : {}", id);
         return browseRepository.findById(id);
     }
-
     /**
      * Delete the browse by id.
      *
