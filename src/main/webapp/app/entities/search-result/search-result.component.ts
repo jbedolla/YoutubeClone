@@ -9,7 +9,7 @@ import { AccountService } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { SearchResultService } from './search-result.service';
-
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
     selector: 'jhi-search-result',
     templateUrl: './search-result.component.html'
@@ -31,6 +31,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
     reverse: any;
 
     constructor(
+        protected sanitizer: DomSanitizer,
         protected searchResultService: SearchResultService,
         protected parseLinks: JhiParseLinks,
         protected jhiAlertService: JhiAlertService,
@@ -143,7 +144,15 @@ export class SearchResultComponent implements OnInit, OnDestroy {
     }
 
     addResults(data: ISearchResult[]) {
-        this.searchResults = data;
+        this.searchResults = this.sanitize(data);
         console.log('Search Results : ' + this.searchResults);
+    }
+
+    private sanitize(results: ISearchResult[]): ISearchResult[] {
+        for (let i = 0; i < results.length; i++) {
+            const path = results[i].link;
+            results[i].url = this.sanitizer.bypassSecurityTrustResourceUrl(path);
+        }
+        return results;
     }
 }
