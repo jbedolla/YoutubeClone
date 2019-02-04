@@ -1,7 +1,5 @@
 package rocks.zipcode.io.repository;
-
 import rocks.zipcode.io.domain.Authority;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
